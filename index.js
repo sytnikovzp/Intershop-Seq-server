@@ -14,3 +14,14 @@ const dbCheck = async () => {
 };
 
 dbCheck();
+
+const syncAllTables = async () => {
+  try {
+    await db.sequelize.sync();
+    console.log(`Sync all tables has been done!`);
+  } catch (error) {
+    console.log(`Can't sync all tables: `, error.message);
+  }
+};
+
+// syncAllTables();
