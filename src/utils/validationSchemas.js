@@ -34,7 +34,7 @@ const ITEM_MODEL_VALIDATION_SCHEMA = yup.object().shape({
 const CUSTOMER_VALIDATION_SCHEMA = yup.object().shape({
   full_name: TITLE_NAME_SCHEMA,
   email: yup.string().email().required(),
-  // password: yup.string().required(),
+  password: yup.string().required(),
 });
 
 const STORE_VALIDATION_SCHEMA = yup.object().shape({
