@@ -9,6 +9,8 @@ module.exports = {
           model: 'items',
           key: 'id',
         },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       order_id: {
         type: Sequelize.INTEGER,
@@ -16,7 +18,15 @@ module.exports = {
           model: 'orders',
           key: 'id',
         },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
+    });
+
+    await queryInterface.addConstraint('items_orders', {
+      fields: ['item_id', 'order_id'],
+      type: 'primary key',
+      name: 'items_orders_pkey',
     });
   },
   async down(queryInterface, Sequelize) {
