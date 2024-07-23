@@ -1,15 +1,15 @@
 const { PAGINATION_SCHEMA } = require('../utils/validationSchemas');
 
-module.exports.paginateItems = async (req, res, next) => {
+module.exports.paginateElements = async (req, res, next) => {
   const { page, result } = req.query;
 
   const defaultPagination = {
-    limit: 5,
+    limit: 10,
     offset: 0,
   };
 
   const pagination = {
-    limit: result ?? 5,
+    limit: result ?? 10,
     offset: (page - 1) * result || 0,
   };
 
