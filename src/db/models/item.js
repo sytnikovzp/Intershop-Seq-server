@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Item.belongsTo(models.Store, { foreignKey: 'store_id' });
-      Item.belongsTo(models.Item_type, { foreignKey: 'type_id' });
-      Item.belongsTo(models.Brand, { foreignKey: 'brand_id' });
-      Item.belongsTo(models.Item_model, { foreignKey: 'model_id' });
-      Item.belongsTo(models.Item_category, { foreignKey: 'category_id' });
+      Item.belongsTo(models.Store, { foreignKey: 'storeId' });
+      Item.belongsTo(models.Item_type, { foreignKey: 'typeId' });
+      Item.belongsTo(models.Brand, { foreignKey: 'brandId' });
+      Item.belongsTo(models.Item_model, { foreignKey: 'modelId' });
+      Item.belongsTo(models.Item_category, { foreignKey: 'categoryId' });
       Item.belongsToMany(models.Order, { through: models.ItemsOrders });
     }
   }

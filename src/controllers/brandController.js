@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 
 const { Brand, sequelize } = require('../db/models');
+const { raw } = require('express');
 
 class BrandController {
   async getBrands(req, res, next) {
@@ -21,7 +22,7 @@ class BrandController {
       }
     } catch (error) {
       console.log(error.message);
-      next(error.message);
+      next(error);
     }
   }
 
@@ -33,7 +34,7 @@ class BrandController {
 
       const brand = await Brand.findOne({
         where: { id: brandId },
-        attributes: ['id', 'title'],
+        attributes: ['id', 'title', 'description'],
         raw: true,
       });
 
@@ -45,71 +46,69 @@ class BrandController {
       }
     } catch (error) {
       console.log(error.message);
-      next(error.message);
+      next(error);
     }
   }
 
-  // async createBrand(req, res) {
-  //   try {
-  //     const { title, genre, shelves, description, image } = req.body;
-  //     const newBrand = await db.query(
-  //       `INSERT INTO brands (title, genre_id, shelf_id, description, "createdAt", "updatedAt", image)
-  //       VALUES ($1, (SELECT id FROM genres WHERE title = $2), (SELECT id FROM shelves WHERE title = $3), $4, NOW(), NOW(), $5)
-  //       RETURNING *;`,
-  //       [title, genre, shelves, description, image]
-  //     );
+  async createBrand(req, res, next) {
+    try {
+      const newBrand = await Brand.create(req.body);
 
-  //     if (newBrand.rows.length > 0) {
-  //       res.status(201).json(newBrand.rows[0]);
-  //     } else {
-  //       res.status(500).send('The brand has not been created');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.status(500).json({ error: 'Internal server error' });
-  //   }
-  // }
+      console.log(newBrand.dataValues);
+      res.status(201).json(newBrand);
+    } catch (error) {
+      console.log(error.message);
+      next(error);
+    }
+  }
 
-  // async updateBrand(req, res) {
-  //   try {
-  //     const { title, genre, shelves, description, image, id } = req.body;
-  //     const updatedBrand = await db.query(
-  //       `UPDATE brands
-  //       SET title=$1, genre_id=(SELECT id FROM genres WHERE title = $2), shelf_id=(SELECT id FROM shelves WHERE title = $3), description=$4, "updatedAt"=NOW(), image=$5 WHERE id=$6 RETURNING *`,
-  //       [title, genre, shelves, description, image, id]
-  //     );
+  async updateBrand(req, res, next) {
+    try {
+      const { id } = req.body;
+      const brand = await Brand.findOne({ where: { id } });
 
-  //     if (updatedBrand.rows.length > 0) {
-  //       res.status(201).json(updatedBrand.rows[0]);
-  //     } else {
-  //       res.status(404).send('Brand not found');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.status(500).json({ error: 'Internal server error' });
-  //   }
-  // }
+      if (brand) {
+        await brand.update(req.body);
 
-  // async deleteBrand(req, res) {
-  //   try {
-  //     const {
-  //       params: { brandId },
-  //     } = req;
-  //     const delBrand = await db.query(
-  //       `DELETE FROM brands WHERE id=$1 RETURNING title, id`,
-  //       [brandId]
-  //     );
+        console.log(`Result is: ${JSON.stringify(brand, null, 2)}`);
+        res.status(201).json(brand);
+      } else {
+        next(createError(404, 'Brand not found!'));
+      }
+    } catch (error) {
+      console.log(error.message);
+      next(error);
+    }
+  }
 
-  //     if (delBrand.rows.length > 0) {
-  //       res.status(204).json(delBrand.rows[0]);
-  //     } else {
-  //       res.status(404).send('Brand not found');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.status(500).json({ error: 'Internal server error' });
-  //   }
-  // }
+  async deleteBrand(req, res, next) {
+    try {
+      const {
+        params: { brandId },
+      } = req;
+
+      const brand = await Brand.findOne({
+        where: { id: brandId },
+        attributes: ['id'],
+      });
+
+      if (!brand) {
+        next(createError(404, 'Brand not found'));
+      }
+
+      const delAmount = await Brand.destroy({
+        where: {
+          id: brandId,
+        },
+      });
+
+      console.log(`Number of deleting rows: ${delAmount}`);
+      res.status(204).json(brand);
+    } catch (error) {
+      console.log(error.message);
+      next(error);
+    }
+  }
 }
 
 module.exports = new BrandController();

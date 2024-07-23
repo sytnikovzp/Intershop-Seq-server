@@ -10,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Brand.hasMany(models.Item, {
-        foreignKey: 'brand_id',
+        foreignKey: 'brandId',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       });
+
       Brand.hasMany(models.Item_model, {
-        foreignKey: 'brand_id',
+        foreignKey: 'brandId',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       });
