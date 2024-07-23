@@ -16,6 +16,10 @@ module.exports = {
       },
       brand_id: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'brands',
+          key: 'id',
+        },
       },
       description: {
         type: Sequelize.TEXT,

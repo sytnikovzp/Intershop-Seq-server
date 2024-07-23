@@ -2,20 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('item_order', {
+    await queryInterface.createTable('items_orders', {
       item_id: {
-        primaryKey: true,
         type: Sequelize.INTEGER,
-        allowNull: false,
+        references: {
+          model: 'items',
+          key: 'id',
+        },
       },
       order_id: {
-        primaryKey: true,
         type: Sequelize.INTEGER,
-        allowNull: false,
+        references: {
+          model: 'orders',
+          key: 'id',
+        },
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('item_order');
+    await queryInterface.dropTable('items_orders');
   },
 };
