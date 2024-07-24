@@ -39,6 +39,7 @@ module.exports = {
       },
       price: {
         type: Sequelize.NUMERIC,
+        defaultValue: 0.0,
       },
       store_id: {
         type: Sequelize.INTEGER,
@@ -49,6 +50,7 @@ module.exports = {
       },
       amount: {
         type: Sequelize.INTEGER,
+        defaultValue: 1,
       },
     });
   },

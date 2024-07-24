@@ -23,9 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       type_id: DataTypes.INTEGER,
       brand_id: DataTypes.INTEGER,
       model_id: DataTypes.INTEGER,
-      price: DataTypes.NUMERIC,
+      price: {
+        type: DataTypes.NUMERIC,
+        defaultValue: 0.0,
+      },
       store_id: DataTypes.INTEGER,
-      amount: DataTypes.INTEGER,
+      amount: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+      },
     },
     {
       sequelize,
