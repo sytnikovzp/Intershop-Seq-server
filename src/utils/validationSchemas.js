@@ -53,9 +53,8 @@ const ORDER_VALIDATION_SCHEMA = yup.object().shape({
   code: yup
     .number()
     .integer('This field must be integer!')
-    .positive('This field must be more than 0!')
-    .required(),
-  date: yup.date().required(),
+    .positive('This field must be more than 0!'),
+  date: yup.date(),
   customer_id: ID_SCHEMA,
   amount: yup
     .number()

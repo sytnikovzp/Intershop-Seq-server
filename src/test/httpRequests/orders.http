@@ -1,0 +1,48 @@
+### Get all orders (only 10 items)
+GET http://localhost:5000/api/orders
+
+### Get orders above half of count
+GET http://localhost:5000/api/orders/half
+
+### Get orders by (array) names
+POST http://localhost:5000/api/orders/by-names
+content-type: application/json
+
+{
+  "orderCodes": ["1015", "1018", "1036"]
+}
+
+### Delete orders by (array) names
+DELETE http://localhost:5000/api/orders/del-orders
+Content-Type: application/json
+
+{
+  "orderCodes": ["1004", "1005", "1006"]
+}
+
+### Get order by id
+GET http://localhost:5000/api/orders/9
+
+### Create new order
+POST http://localhost:5000/api/orders HTTP/1.1
+content-type: application/json
+
+{
+    "amount": 100,
+    "paid": true,
+    "customerName": "Alice Johnson"
+}
+
+### Update exists order by id
+PUT http://localhost:5000/api/orders HTTP/1.1
+content-type: application/json
+
+{
+  "id": "1",
+  "amount": 100,
+  "paid": false,
+  "customerName": "Alice Johnson"
+}
+
+### Delete order by id
+DELETE  http://localhost:5000/api/orders/7 HTTP/1.1
