@@ -2,8 +2,10 @@ const createError = require('http-errors');
 
 const {
   IM,
+  Brand,
   Sequelize: { Op },
 } = require('../db/models');
+const { raw } = require('express');
 
 class IMController {
   async getIMs(req, res, next) {
@@ -11,6 +13,12 @@ class IMController {
       const { limit, offset } = req.pagination;
       const records = await IM.findAll({
         attributes: ['id', 'title', 'description'],
+        include: [
+          {
+            model: Brand,
+            attributes: ['title'],
+          },
+        ],
         raw: true,
         limit,
         offset,
@@ -34,11 +42,19 @@ class IMController {
       const totalRecords = await IM.count();
       const halfCount = Math.floor(totalRecords / 2);
       const records = await IM.findAll({
+        attributes: ['id', 'title', 'description'],
+        include: [
+          {
+            model: Brand,
+            attributes: ['title'],
+          },
+        ],
         where: {
           id: {
             [Op.gt]: halfCount,
           },
         },
+        raw: true,
         order: [['id', 'ASC']],
       });
 
@@ -65,11 +81,20 @@ class IMController {
       }
 
       const records = await IM.findAll({
+        attributes: ['id', 'title', 'description'],
+        include: [
+          {
+            model: Brand,
+            attributes: ['title'],
+          },
+        ],
         where: {
           title: {
             [Op.in]: imNames,
           },
         },
+        raw: true,
+        order: [['id', 'ASC']],
       });
 
       if (records.length > 0) {
@@ -123,6 +148,12 @@ class IMController {
       const im = await IM.findOne({
         where: { id: imId },
         attributes: ['id', 'title', 'description'],
+        include: [
+          {
+            model: Brand,
+            attributes: ['title'],
+          },
+        ],
         raw: true,
       });
 
@@ -140,7 +171,20 @@ class IMController {
 
   async createIM(req, res, next) {
     try {
-      const newIM = await IM.create(req.body);
+      const { title, description, brandTitle } = req.body;
+
+      const brand = await Brand.findOne({ where: { title: brandTitle } });
+
+      if (!brand) {
+        return next(createError(404, 'Brand not found!'));
+      }
+
+      const newIM = await IM.create({
+        title,
+        description,
+        brand_id: brand.id,
+      });
+
       console.log(newIM.dataValues);
       res.status(201).json(newIM);
     } catch (error) {
@@ -151,11 +195,20 @@ class IMController {
 
   async updateIM(req, res, next) {
     try {
-      const { id } = req.body;
+      const { id, brandTitle, ...updateData } = req.body;
+      const brand = await Brand.findOne({ where: { title: brandTitle } });
+
+      if (!brand) {
+        return next(createError(404, 'Brand not found!'));
+      }
+
       const im = await IM.findOne({ where: { id } });
 
       if (im) {
-        await im.update(req.body);
+        await im.update({
+          ...updateData,
+          brand_id: brand.id,
+        });
         console.log(`Result is: ${JSON.stringify(im, null, 2)}`);
         res.status(201).json(im);
       } else {

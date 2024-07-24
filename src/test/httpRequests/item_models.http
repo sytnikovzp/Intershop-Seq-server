@@ -21,14 +21,15 @@ Content-Type: application/json
 }
 
 ### Get item model by id
-GET http://localhost:5000/api/item_models/9
+GET http://localhost:5000/api/item_models/8
 
 ### Create new item model
 POST http://localhost:5000/api/item_models HTTP/1.1
 content-type: application/json
 
 {
-  "title": "New item model",
+  "title": "New samsung model",
+  "brandTitle": "Samsung",
   "description": "New test item model"
 }
 
@@ -39,6 +40,7 @@ content-type: application/json
 {
   "id": "1",
   "title": "Updated item model",
+  "brandTitle": "Samsung",
   "description": "Updated description item model"
 }
 
