@@ -26,7 +26,7 @@ module.exports.validateBrand = async (req, res, next) => {
   }
 };
 
-module.exports.validateItemModel = async (req, res, next) => {
+module.exports.validateIM = async (req, res, next) => {
   const { body } = req;
   try {
     const validatedItemModel = await ITEM_MODEL_VALIDATION_SCHEMA.validate(
@@ -71,7 +71,7 @@ module.exports.validateStore = async (req, res, next) => {
   }
 };
 
-module.exports.validateItemType = async (req, res, next) => {
+module.exports.validateIT = async (req, res, next) => {
   const { body } = req;
   try {
     const validatedItemType = await ITEM_TYPE_VALIDATION_SCHEMA.validate(body, {
@@ -85,7 +85,7 @@ module.exports.validateItemType = async (req, res, next) => {
   }
 };
 
-module.exports.validateItemCategory = async (req, res, next) => {
+module.exports.validateIC = async (req, res, next) => {
   const { body } = req;
   try {
     const validatedItemCategory =

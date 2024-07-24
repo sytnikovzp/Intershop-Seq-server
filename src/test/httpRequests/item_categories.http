@@ -1,0 +1,46 @@
+### Get all item categories (only 10 items)
+GET http://localhost:5000/api/item_categories
+
+### Get item categories above half of count
+GET http://localhost:5000/api/item_categories/half
+
+### Get item categories by (array) names
+POST http://localhost:5000/api/item_categories/by-names
+content-type: application/json
+
+{
+  "icNames": ["Fitness", "Pets", "Watches"]
+}
+
+### Delete item categories by (array) names
+DELETE http://localhost:5000/api/item_categories/del-ics
+Content-Type: application/json
+
+{
+  "icNames": ["Books", "Furniture", "Toys"]
+}
+
+### Get item category by id
+GET http://localhost:5000/api/item_categories/9
+
+### Create new item category
+POST http://localhost:5000/api/item_categories HTTP/1.1
+content-type: application/json
+
+{
+  "title": "New item category",
+  "description": "New test item category"
+}
+
+### Update exists item categorie by id
+PUT http://localhost:5000/api/item_categories HTTP/1.1
+content-type: application/json
+
+{
+  "id": "1",
+  "title": "Updated item category",
+  "description": "Updated description item category"
+}
+
+### Delete item category by id
+DELETE  http://localhost:5000/api/item_categories/7 HTTP/1.1

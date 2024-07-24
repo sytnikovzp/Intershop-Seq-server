@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      Brand.hasMany(models.Item_model, {
+      Brand.hasMany(models.IM, {
         foreignKey: 'brandId',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',

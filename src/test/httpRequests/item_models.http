@@ -1,0 +1,46 @@
+### Get all item models (only 10 items)
+GET http://localhost:5000/api/item_models
+
+### Get item models above half of count
+GET http://localhost:5000/api/item_models/half
+
+### Get item models by (array) names
+POST http://localhost:5000/api/item_models/by-names
+content-type: application/json
+
+{
+  "imNames": ["Canon EOS 90D", "Nikon Z6", "Apple iPad Pro"]
+}
+
+### Delete item models by (array) names
+DELETE http://localhost:5000/api/item_models/del-ims
+Content-Type: application/json
+
+{
+  "imNames": ["Galaxy S21", "MacBook Pro", "XPS 13"]
+}
+
+### Get item model by id
+GET http://localhost:5000/api/item_models/9
+
+### Create new item model
+POST http://localhost:5000/api/item_models HTTP/1.1
+content-type: application/json
+
+{
+  "title": "New item model",
+  "description": "New test item model"
+}
+
+### Update exists item model by id
+PUT http://localhost:5000/api/item_models HTTP/1.1
+content-type: application/json
+
+{
+  "id": "1",
+  "title": "Updated item model",
+  "description": "Updated description item model"
+}
+
+### Delete item model by id
+DELETE  http://localhost:5000/api/item_models/7 HTTP/1.1

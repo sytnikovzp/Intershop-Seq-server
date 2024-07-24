@@ -38,8 +38,8 @@ content-type: application/json
 
 {
   "id": "1",
-  "title": "Update brand",
-  "description": "Updated test brand"
+  "title": "Updated brand",
+  "description": "Updated description brand"
 }
 
 ### Delete brand by id

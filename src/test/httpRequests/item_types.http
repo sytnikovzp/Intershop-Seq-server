@@ -1,0 +1,46 @@
+### Get all item types (only 10 items)
+GET http://localhost:5000/api/item_types
+
+### Get item types above half of count
+GET http://localhost:5000/api/item_types/half
+
+### Get item types by (array) names
+POST http://localhost:5000/api/item_types/by-names
+content-type: application/json
+
+{
+  "itNames": ["Tablets", "Blenders", "Bookshelves"]
+}
+
+### Delete item types by (array) names
+DELETE http://localhost:5000/api/item_types/del-its
+Content-Type: application/json
+
+{
+  "itNames": ["Watches", "Cameras", "Televisions"]
+}
+
+### Get item type by id
+GET http://localhost:5000/api/item_types/9
+
+### Create new item type
+POST http://localhost:5000/api/item_types HTTP/1.1
+content-type: application/json
+
+{
+  "title": "New item type",
+  "description": "New test item type"
+}
+
+### Update exists item type by id
+PUT http://localhost:5000/api/item_types HTTP/1.1
+content-type: application/json
+
+{
+  "id": "1",
+  "title": "Updated item type",
+  "description": "Updated description item type"
+}
+
+### Delete item type by id
+DELETE  http://localhost:5000/api/item_types/7 HTTP/1.1

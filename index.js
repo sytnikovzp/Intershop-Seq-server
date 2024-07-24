@@ -33,7 +33,7 @@ server.listen(PORT, HOST_NAME, () =>
 
 console.log('Server is started!');
 
-// ======================= SYNC =======================
+// ======================= SYNC`s =======================
 
 const syncModel = async (model) => {
   try {
