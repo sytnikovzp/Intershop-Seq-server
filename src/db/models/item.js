@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Item.belongsTo(models.Brand, { foreignKey: 'brandId' });
       Item.belongsTo(models.IM, { foreignKey: 'modelId' });
       Item.belongsTo(models.IC, { foreignKey: 'categoryId' });
-      Item.belongsToMany(models.Order, { through: models.ItemsOrders });
+      Item.belongsToMany(models.Order, { through: models.IO });
     }
   }
   Item.init(

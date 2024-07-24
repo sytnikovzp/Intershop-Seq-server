@@ -128,16 +128,16 @@ module.exports.validateItem = async (req, res, next) => {
   }
 };
 
-module.exports.validateItemsOrders = async (req, res, next) => {
+module.exports.validateIO = async (req, res, next) => {
   const { body } = req;
   try {
-    const validatedItemsOrders = await ITEMS_ORDERS_VALIDATION_SCHEMA.validate(
+    const validatedIO = await ITEMS_ORDERS_VALIDATION_SCHEMA.validate(
       body,
       {
         abortEarly: false,
       }
     );
-    req.body = validatedItemsOrders;
+    req.body = validatedIO;
     next();
   } catch (error) {
     console.log(error.errors);

@@ -30,7 +30,7 @@ content-type: application/json
 {
     "amount": 100,
     "paid": true,
-    "customerName": "Alice Johnson"
+    "customerName": "Eva Davis"
 }
 
 ### Update exists order by id
@@ -41,7 +41,7 @@ content-type: application/json
   "id": "1",
   "amount": 100,
   "paid": false,
-  "customerName": "Alice Johnson"
+  "customerName": "Eva Davis"
 }
 
 ### Delete order by id
