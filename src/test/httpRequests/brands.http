@@ -1,14 +1,29 @@
-// Get all brands
+### Get all brands (only 10 items)
 GET http://localhost:5000/api/brands
 
-###
+### Get brands above half of count
+GET http://localhost:5000/api/brands/half
 
-// Get brand by id
+### Get brands by (array) names
+POST http://localhost:5000/api/brands/by-names
+content-type: application/json
+
+{
+  "brandNames": ["Honda", "Bosch", "Lenovo"]
+}
+
+### Delete brands by (array) names
+DELETE http://localhost:5000/api/brands/del-brands
+Content-Type: application/json
+
+{
+  "brandNames": ["Samsung", "Sony", "LG"]
+}
+
+### Get brand by id
 GET http://localhost:5000/api/brands/9
 
-###
-
-// Create brand (Success)
+### Create new brand
 POST http://localhost:5000/api/brands HTTP/1.1
 content-type: application/json
 
@@ -17,9 +32,7 @@ content-type: application/json
   "description": "New test brand"
 }
 
-###
-
-// Update brand
+### Update exists brand by id
 PUT http://localhost:5000/api/brands HTTP/1.1
 content-type: application/json
 
@@ -29,7 +42,5 @@ content-type: application/json
   "description": "Updated test brand"
 }
 
-###
-
-// Delete brand
-DELETE  http://localhost:5000/api/brands/11 HTTP/1.1
+### Delete brand by id
+DELETE  http://localhost:5000/api/brands/7 HTTP/1.1
