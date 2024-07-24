@@ -1,0 +1,46 @@
+### Get all stores (only 10 items)
+GET http://localhost:5000/api/stores
+
+### Get stores above half of count
+GET http://localhost:5000/api/stores/half
+
+### Get stores by (array) names
+POST http://localhost:5000/api/stores/by-names
+content-type: application/json
+
+{
+  "storeNames": ["ElectroCity", "LivingSpace", "LuxuryLane"]
+}
+
+### Delete stores by (array) names
+DELETE http://localhost:5000/api/stores/del-stores
+Content-Type: application/json
+
+{
+  "storeNames": ["BookNook", "FurnitureLand", "ToyBarn"]
+}
+
+### Get store by id
+GET http://localhost:5000/api/stores/9
+
+### Create new store
+POST http://localhost:5000/api/stores HTTP/1.1
+content-type: application/json
+
+{
+  "title": "New store",
+  "description": "New test store"
+}
+
+### Update exists store by id
+PUT http://localhost:5000/api/stores HTTP/1.1
+content-type: application/json
+
+{
+  "id": "1",
+  "title": "Updated store",
+  "description": "Updated description store"
+}
+
+### Delete store by id
+DELETE  http://localhost:5000/api/stores/7 HTTP/1.1

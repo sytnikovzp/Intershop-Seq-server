@@ -1,0 +1,48 @@
+### Get all customers (only 10 items)
+GET http://localhost:5000/api/customers
+
+### Get customers above half of count
+GET http://localhost:5000/api/customers/half
+
+### Get customers by (array) names
+POST http://localhost:5000/api/customers/by-names
+content-type: application/json
+
+{
+  "customerNames": ["Leo Jackson", "Olivia Clark", "Steve Young"]
+}
+
+### Delete customers by (array) names
+DELETE http://localhost:5000/api/customers/del-customers
+Content-Type: application/json
+
+{
+  "customerNames": ["David Brown", "Eva Davis", "Frank Miller"]
+}
+
+### Get customer by id
+GET http://localhost:5000/api/customers/9
+
+### Create new customer
+POST http://localhost:5000/api/customers HTTP/1.1
+content-type: application/json
+
+{
+  "full_name": "New User",
+  "email": "new_mail@gmail.com",
+  "password": "Qwerty12"
+}
+
+### Update exists customer by id
+PUT http://localhost:5000/api/customers HTTP/1.1
+content-type: application/json
+
+{
+  "id": 1,
+  "full_name": "Updated User",
+  "email": "updated_mail@gmail.com",
+  "password": "Qwerty12"
+}
+
+### Delete customer by id
+DELETE  http://localhost:5000/api/customers/7 HTTP/1.1
