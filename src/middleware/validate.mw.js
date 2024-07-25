@@ -128,19 +128,19 @@ module.exports.validateItem = async (req, res, next) => {
   }
 };
 
-module.exports.validateIO = async (req, res, next) => {
-  const { body } = req;
-  try {
-    const validatedIO = await ITEMS_ORDERS_VALIDATION_SCHEMA.validate(
-      body,
-      {
-        abortEarly: false,
-      }
-    );
-    req.body = validatedIO;
-    next();
-  } catch (error) {
-    console.log(error.errors);
-    next(`Error IS: ${error.errors}`);
-  }
-};
+// module.exports.validateIO = async (req, res, next) => {
+//   const { body } = req;
+//   try {
+//     const validatedIO = await ITEMS_ORDERS_VALIDATION_SCHEMA.validate(
+//       body,
+//       {
+//         abortEarly: false,
+//       }
+//     );
+//     req.body = validatedIO;
+//     next();
+//   } catch (error) {
+//     console.log(error.errors);
+//     next(`Error IS: ${error.errors}`);
+//   }
+// };

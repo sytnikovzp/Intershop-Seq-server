@@ -161,7 +161,7 @@ module.exports = {
       description: 'Action cameras and accessories',
     },
     {
-      title: 'Lenovo Comps',
+      title: 'Fujitsu Comps.',
       description: 'Computer systems and accessories',
     },
     {
@@ -205,12 +205,12 @@ module.exports = {
     },
     {
       title: 'ThinkPad X1',
-      brand_id: 15,
+      brand_id: 14,
       description: 'Business laptop by Lenovo',
     },
     {
       title: 'Nikon D850',
-      brand_id: 6,
+      brand_id: 33,
       description: 'Full-frame DSLR camera by Nikon',
     },
     {
@@ -224,9 +224,9 @@ module.exports = {
       description: 'Luxury diving watch by Rolex',
     },
     {
-      title: 'G-Shock GA-2100',
-      brand_id: 1,
-      description: 'Durable digital watch by Casio',
+      title: 'Rolex Datejust',
+      brand_id: 9,
+      description: 'Luxury diving watch by Rolex',
     },
     {
       title: 'Sony WH-1000XM4',
@@ -255,7 +255,7 @@ module.exports = {
     },
     {
       title: 'HP Spectre x360',
-      brand_id: 7,
+      brand_id: 27,
       description: 'Convertible laptop by HP',
     },
     {
@@ -275,16 +275,16 @@ module.exports = {
     },
     {
       title: 'Garmin Forerunner 945',
-      brand_id: 1,
+      brand_id: 22,
       description: 'GPS smartwatch for athletes',
     },
     {
       title: 'Nikon Z6',
-      brand_id: 6,
+      brand_id: 33,
       description: 'Full-frame mirrorless camera',
     },
     {
-      title: 'Fujifilm X-T4',
+      title: 'CANON EOS 250D BK 18-55',
       brand_id: 6,
       description: 'Mirrorless camera with advanced features',
     },
@@ -299,8 +299,8 @@ module.exports = {
       description: 'Chronograph watch by Omega',
     },
     {
-      title: 'Huawei P40 Pro',
-      brand_id: 3,
+      title: 'Xiaomi 13',
+      brand_id: 24,
       description: 'Smartphone with advanced camera',
     },
     {
@@ -314,13 +314,13 @@ module.exports = {
       description: 'Tablet with S Pen',
     },
     {
-      title: 'Google Pixel 6',
+      title: 'iPhone 15 Pro max',
       brand_id: 1,
       description: 'Smartphone with advanced AI features',
     },
     {
-      title: 'Asus ROG Phone 5',
-      brand_id: 1,
+      title: 'Xiaomi Shark 5 Pro',
+      brand_id: 24,
       description: 'Gaming smartphone with high refresh rate',
     },
     {
@@ -335,12 +335,12 @@ module.exports = {
     },
     {
       title: 'HP Elite Dragonfly',
-      brand_id: 7,
+      brand_id: 27,
       description: 'Premium business laptop',
     },
     {
       title: 'Lenovo Yoga C940',
-      brand_id: 15,
+      brand_id: 14,
       description: 'Convertible laptop with touchscreen',
     },
     {
@@ -360,12 +360,12 @@ module.exports = {
     },
     {
       title: 'Fujifilm XF 56mm',
-      brand_id: 6,
+      brand_id: 41,
       description: 'Portrait lens for Fujifilm cameras',
     },
     {
-      title: 'Olympus OM-D E-M1',
-      brand_id: 6,
+      title: 'Nikon D7500',
+      brand_id: 33,
       description: 'Mirrorless camera with advanced features',
     },
     {
@@ -375,7 +375,7 @@ module.exports = {
     },
     {
       title: 'GoPro HERO9',
-      brand_id: 11,
+      brand_id: 40,
       description: 'Action camera with advanced stabilization',
     },
     {
@@ -390,12 +390,12 @@ module.exports = {
     },
     {
       title: 'Bose QuietComfort 35 II',
-      brand_id: 4,
+      brand_id: 36,
       description: 'Comfortable noise-cancelling headphones',
     },
     {
       title: 'Sennheiser HD 660S',
-      brand_id: 4,
+      brand_id: 42,
       description: 'High-quality open-back headphones',
     },
   ],

@@ -76,10 +76,10 @@ const ITEM_VALIDATION_SCHEMA = yup.object().shape({
     .positive('This field must be more than 0!'),
 });
 
-const ITEMS_ORDERS_VALIDATION_SCHEMA = yup.object().shape({
-  item_id: ID_SCHEMA,
-  order_id: ID_SCHEMA,
-});
+// const ITEMS_ORDERS_VALIDATION_SCHEMA = yup.object().shape({
+//   item_id: ID_SCHEMA,
+//   order_id: ID_SCHEMA,
+// });
 
 module.exports = {
   PAGINATION_SCHEMA,
@@ -91,5 +91,5 @@ module.exports = {
   ITEM_CATEGORY_VALIDATION_SCHEMA,
   ORDER_VALIDATION_SCHEMA,
   ITEM_VALIDATION_SCHEMA,
-  ITEMS_ORDERS_VALIDATION_SCHEMA,
+  // ITEMS_ORDERS_VALIDATION_SCHEMA,
 };

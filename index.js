@@ -55,4 +55,4 @@ const syncModels = async () => {
   }
 };
 
-// syncModels();
+syncModels();
