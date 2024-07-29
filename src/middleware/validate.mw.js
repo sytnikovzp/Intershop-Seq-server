@@ -15,10 +15,9 @@ const {
 module.exports.validateBrand = async (req, res, next) => {
   const { body } = req;
   try {
-    const validatedBrand = await BRAND_VALIDATION_SCHEMA.validate(body, {
+    await BRAND_VALIDATION_SCHEMA.validate(body, {
       abortEarly: false,
     });
-    req.body = validatedBrand;
     next();
   } catch (error) {
     console.log(error.errors);

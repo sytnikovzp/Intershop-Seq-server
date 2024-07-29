@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Get brand by id
-GET http://localhost:5000/api/brands/9
+GET http://localhost:5000/api/brands/1
 
 ### Create new brand
 POST http://localhost:5000/api/brands HTTP/1.1
@@ -40,6 +40,16 @@ content-type: application/json
   "id": "1",
   "title": "Updated brand",
   "description": "Updated description brand"
+}
+
+### Update book PATCH
+PATCH http://localhost:5000/api/brands/1 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Patched brand",
+  "description": "UpdDesc",
+  "logo": "null"
 }
 
 ### Delete brand by id

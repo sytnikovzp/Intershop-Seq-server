@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const {
   Brand,
   Sequelize: { Op },
+  sequelize,
 } = require('../db/models');
 
 class BrandController {
@@ -10,7 +11,7 @@ class BrandController {
     try {
       const { limit, offset } = req.pagination;
       const records = await Brand.findAll({
-        attributes: ['id', 'title', 'description'],
+        // attributes: ['id', 'title', 'description'],
         raw: true,
         limit,
         offset,
@@ -118,7 +119,7 @@ class BrandController {
 
       const brand = await Brand.findOne({
         where: { id: brandId },
-        attributes: ['id', 'title', 'description'],
+        // attributes: ['id', 'title', 'description'],
         raw: true,
       });
 
@@ -188,6 +189,83 @@ class BrandController {
       }
     } catch (error) {
       console.log(error.message);
+      next(error);
+    }
+  }
+
+  async patchBrand(req, res, next) {
+    const t = await sequelize.transaction();
+
+    try {
+      const {
+        params: { brandId },
+        body,
+      } = req;
+
+      const [count, [updatedBrands]] = await Brand.update(body, {
+        where: {
+          id: brandId,
+        },
+        returning: ['id', 'title', 'description', 'image'],
+        raw: true,
+        transaction: t,
+      });
+      console.log(count);
+      console.log(updatedBrands);
+
+      if (count > 0) {
+        console.log(`Result is: ${JSON.stringify(updatedBrands, null, 2)}`);
+        res.status(200).json(updatedBrands);
+      } else {
+        console.log('Brand not found');
+        next(createError(404, 'Brand not found'));
+      }
+
+      await t.commit();
+    } catch (error) {
+      console.log(error.message);
+      await t.rollback();
+      next(error);
+    }
+  }
+
+  async changeLogo(req, res, next) {
+    const t = await sequelize.transaction();
+
+    try {
+      const {
+        file: { filename },
+        params: { brandId },
+      } = req;
+
+      const [count, [updatedBrands]] = await Brand.update(
+        {
+          logo: filename,
+        },
+        {
+          where: {
+            id: brandId,
+          },
+          returning: true,
+          raw: true,
+          fields: ['logo'],
+          transaction: t,
+        }
+      );
+      console.log(count);
+      console.log(updatedBrands);
+
+      if (count > 0) {
+        console.log(`Result is: ${JSON.stringify(updatedBrands, null, 2)}`);
+        res.status(200).json(updatedBrands);
+      } else {
+        console.log('Brand not found');
+        next(createError(404, 'Brand not found'));
+      }
+      await t.commit();
+    } catch (error) {
+      console.log(error.message);
+      await t.rollback();
       next(error);
     }
   }

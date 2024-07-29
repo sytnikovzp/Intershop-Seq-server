@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       description: DataTypes.TEXT,
+      logo: DataTypes.TEXT,
     },
     {
       sequelize,
