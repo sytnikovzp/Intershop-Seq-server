@@ -1,10 +1,18 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
+require('dotenv').config();
+
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
+
 const { customers } = require('../../constants');
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    for (const customer of customers) {
+      customer.password = await bcrypt.hash(customer.password, SALT_ROUNDS);
+    }
+
     await queryInterface.bulkInsert('customers', customers, {});
   },
 

@@ -12,7 +12,7 @@
     "miguna": "npx sequelize db:migrate:undo:all",
     "seedall": "npx sequelize db:seed:all",
     "seeduna": "npx sequelize db:seed:undo:all",
-    "initial": "npm run seeduna && npm run miguna && npm run dbdrop && npm run dbcreate && npm run mig && npm run seedall && npm start"
+    "dbinit": "npm run seeduna && npm run miguna && npm run dbdrop && npm run dbcreate && npm run mig && npm run seedall && npm start"
   },
   "keywords": [],
   "author": "AlexS",

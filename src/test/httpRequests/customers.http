@@ -29,7 +29,7 @@ content-type: application/json
 
 {
   "full_name": "New User",
-  "email": "new_mail@gmail.com",
+  "email": "New_Mail@gmail.com",
   "password": "Qwerty12"
 }
 

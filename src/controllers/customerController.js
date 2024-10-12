@@ -136,7 +136,16 @@ class CustomerController {
 
   async createCustomer(req, res, next) {
     try {
-      const newCustomer = await Customer.create(req.body);
+      const emailLowerCase = req.body.email.toLowerCase();
+
+      const newBody = {
+        full_name: req.body.full_name,
+        email: emailLowerCase,
+        password: req.hashPass,
+      };
+
+      const newCustomer = await Customer.create(newBody);
+
       console.log(newCustomer.dataValues);
       res.status(201).json(newCustomer);
     } catch (error) {

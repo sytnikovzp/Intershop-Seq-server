@@ -1,6 +1,8 @@
 'use strict';
 
-const bcrypt = require('bcrypt');
+require('dotenv').config();
+
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
@@ -33,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING(100),
         allowNull: false,
-        set(value) {
-          this.setDataValue('password', bcrypt.hashSync(value, 9));
-        },
+        // set(value) {
+        //   this.setDataValue('password', bcrypt.hashSync(value, SALT_ROUNDS));
+        // },
       },
     },
     {

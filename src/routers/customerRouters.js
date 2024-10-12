@@ -1,27 +1,36 @@
 const { Router } = require('express');
 // ============================
-const customerController = require('../controllers/customerController');
-const { validateCustomer } = require('../middleware/validate.mw');
-const { paginate } = require('../middleware');
+const {
+  getCustomers,
+  createCustomer,
+  updateCustomer,
+  getAllRecordsAboveHalf,
+  getCustomersByNames,
+  deleteCustomersByTitles,
+  getCustomerById,
+  deleteCustomer,
+} = require('../controllers/customerController');
+const {
+  paginate: { paginateElements },
+  validate: { validateCustomer },
+  hash: { hashPassword },
+} = require('../middleware');
 // ============================
 
 const router = new Router();
 
 router
   .route('/')
-  .get(paginate.paginateElements, customerController.getCustomers)
-  .post(validateCustomer, customerController.createCustomer)
-  .put(validateCustomer, customerController.updateCustomer);
+  .get(paginateElements, getCustomers)
+  .post(validateCustomer, hashPassword, createCustomer)
+  .put(validateCustomer, updateCustomer);
 
-router.route('/half').get(customerController.getAllRecordsAboveHalf);
+router.route('/half').get(getAllRecordsAboveHalf);
 
-router.route('/by-names').post(customerController.getCustomersByNames);
+router.route('/by-names').post(getCustomersByNames);
 
-router.route('/del-customers').delete(customerController.deleteCustomersByTitles);
+router.route('/del-customers').delete(deleteCustomersByTitles);
 
-router
-  .route('/:customerId')
-  .get(customerController.getCustomerById)
-  .delete(customerController.deleteCustomer);
+router.route('/:customerId').get(getCustomerById).delete(deleteCustomer);
 
 module.exports = router;
